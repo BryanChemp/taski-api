@@ -1,20 +1,21 @@
 import express from "express";
-import tasksRoutes from './routes/tasks.routes';
+import tasksRoutes from './routes/task.routes';
+import userRoutes from './routes/user.routes';
 import dotenv from "dotenv"
 
 dotenv.config();
 const app = express();
-const port = 3000;
 
 app.use(express.json());
 
-app.use('/tasks', tasksRoutes);
+app.use('/api/task', tasksRoutes);
+app.use('/api/user', userRoutes);
 
 app.get("/", (_, res) => {
   res.send("API funcionando 🚀");
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
