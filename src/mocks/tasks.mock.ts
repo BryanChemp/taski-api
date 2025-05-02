@@ -1,4 +1,6 @@
 import { Task } from '../types/Task';
+import { mockCategories } from './categories.mock';
+import { mockUserRefs } from './usersRef.mock';
 
 export const mockTasks: Task[] = [
   {
@@ -12,19 +14,18 @@ export const mockTasks: Task[] = [
     priority: 'high',
     type: 'bug',
     visibility: 'private',
-    tags: [{ id: 1, name: 'bug', color: '#ff0000' }],
-    checklist: [],
-    categories: [{ id: 1, name: 'Login' }],
-    participants: [],
-    assignee: { id: 2, name: 'Ana Dev' },
-    reporter: { id: 1, name: 'Bryan' },
+    tagsIds: [1],
+    checklistIds: [1, 2],
+    categoriesIds: [1],
+    participantsIds: [1],
+    reporter: mockUserRefs[0],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     dueDate: new Date().toISOString(),
     startDate: new Date().toISOString(),
     estimatedTimeMinutes: 120,
-    timeLogs: [],
-    comments: [],
+    timeLogsIds: [],
+    commentsIds: [1, 2, 3],
     dependencies: [],
     relatedTasks: []
   }
