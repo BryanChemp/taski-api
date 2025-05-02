@@ -3,6 +3,7 @@ import { Comment } from "../types/Comment";
 export const mockComments: Comment[] = [
   {
     id: 1,
+    taskId: 1,
     author: {
       id: 101,
       name: 'Alice Santos',
@@ -12,6 +13,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 2,
+    taskId: 1,
     author: {
       id: 102,
       name: 'Bruno Lima',
@@ -22,6 +24,7 @@ export const mockComments: Comment[] = [
   },
   {
     id: 3,
+    taskId: 1,
     author: {
       id: 103,
       name: 'Carla Mendes',
