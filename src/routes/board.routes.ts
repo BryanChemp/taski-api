@@ -14,4 +14,17 @@ router.get('/', (req, res) => {
   res.json(response);
 });
 
+
+router.get('/:userId', (req, res) => {
+  const userId = parseInt(req.params.userId);
+  const boards = mockBoards.filter((board) => board.membersId.includes(userId));
+  
+  const response: ApiResponse<Board[]> = {
+    status: 200,
+    message: '',
+    data: boards
+  };
+  res.json(response);
+});
+
 export default router;

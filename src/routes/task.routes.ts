@@ -14,4 +14,16 @@ router.get('/', (req, res) => {
   res.json(response);
 });
 
+router.get('/:columnId', (req, res) => {
+  const columnId = parseInt(req.params.columnId);
+  const tasks = mockTasks.filter((task) => task.columnId == columnId);
+  
+  const response: ApiResponse<Task[]> = {
+    status: 200,
+    message: '',
+    data: tasks
+  };
+  res.json(response);
+});
+
 export default router;
