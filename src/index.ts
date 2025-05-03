@@ -11,11 +11,13 @@ import categoryRoutes from './routes/category.routes';
 import tagRoutes from './routes/tag.routes';
 import timelogRoutes from './routes/timelog.routes';
 import dotenv from "dotenv"
+import cors from "cors";
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);

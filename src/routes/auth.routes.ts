@@ -18,16 +18,13 @@ router.post('/login', (req, res) => {
       if (!email) return sendError(res, 400, 'Invalid email');
       if (!password) return sendError(res, 400, 'Invalid password');
   
-      const sessionToken = authenticateUser(email, password);
-      if (!sessionToken) return sendError(res, 404, 'User not found in our database');
+      const authenticatedUser = authenticateUser(email, password);
+      if (!authenticatedUser) return sendError(res, 404, 'User not found in our database');
   
       return res.status(200).json(<ApiResponse<User>>{
         status: 200,
         message: 'Login realizado com sucesso',
-        data: { 
-          ...mockUsers[0],
-          sessionToken
-        },
+        data: authenticatedUser,
       });
     } catch (e) {
       console.error("Error loging user:", e);
