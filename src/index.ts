@@ -1,4 +1,5 @@
 import express from "express";
+import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import boardRoutes from './routes/board.routes';
 import boardColumnsRoutes from './routes/boardColumns.routes';
@@ -16,6 +17,7 @@ const app = express();
 
 app.use(express.json());
 
+app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/board', boardRoutes);
 app.use('/api/column', boardColumnsRoutes);

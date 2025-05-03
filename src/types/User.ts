@@ -7,5 +7,6 @@ export interface User {
     email: string,
     phone: string,
     type: UserType,
-    password: string
+    password: string,
+    sessionToken?: string
 }
