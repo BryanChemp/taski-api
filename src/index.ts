@@ -1,4 +1,6 @@
 import express from "express";
+import http from "http";
+import { Server } from "socket.io"; 
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import boardRoutes from './routes/board.routes';
@@ -15,6 +17,26 @@ import cors from "cors";
 
 dotenv.config();
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`⚡: Novo cliente conectado (ID: ${socket.id})`);
+
+  socket.on("moveTask", (data) => {
+    console.log("Task movida:", data);
+    socket.broadcast.emit("taskUpdated", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("🔥: Cliente desconectado", socket.id);
+  });
+});
 
 app.use(express.json());
 app.use(cors())
@@ -36,6 +58,6 @@ app.get("/", (_, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+server.listen(PORT, () => {
+  console.log(`Servidor HTTP e Socket.IO rodando em http://localhost:${PORT}`);
 });
