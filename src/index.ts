@@ -14,6 +14,7 @@ import tagRoutes from './routes/tag.routes';
 import timelogRoutes from './routes/timelog.routes';
 import dotenv from "dotenv"
 import cors from "cors";
+import { Task } from "./types/Task";
 
 dotenv.config();
 const app = express();
@@ -26,15 +27,20 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`⚡: Novo cliente conectado (ID: ${socket.id})`);
+  console.log(`Cliente conectado: ${socket.id}`);
 
-  socket.on("moveTask", (data) => {
-    console.log("Task movida:", data);
-    socket.broadcast.emit("taskUpdated", data);
+  socket.on("updateTasks", (updatedTasks) => {
+    console.log("Tasks atualizadas:", updatedTasks);
+    socket.broadcast.emit("taskUpdated", updatedTasks);
+  });
+
+  socket.on("updateColumns", (updatedColumns) => {
+    console.log("Colunas atualizadas:", updatedColumns);
+    socket.broadcast.emit("columnsUpdated", updatedColumns);
   });
 
   socket.on("disconnect", () => {
-    console.log("🔥: Cliente desconectado", socket.id);
+    console.log(`Cliente desconectado: ${socket.id}`);
   });
 });
 
