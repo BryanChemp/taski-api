@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   res.json(response);
 });
 
-router.get('/:columnId', (req, res) => {
+router.get('/by-column/:columnId', (req, res) => {
   const columnId = parseInt(req.params.columnId);
   const tasks = mockTasks.filter((task) => task.columnId == columnId);
   
