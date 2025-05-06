@@ -43,7 +43,9 @@ io.on("connection", (socket) => {
     });
 });
 app.use(express_1.default.json());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: /https:\/\/taski-one\.vercel\.app/
+}));
 app.use('/api/auth', auth_routes_1.default);
 app.use('/api/user', user_routes_1.default);
 app.use('/api/board', board_routes_1.default);
