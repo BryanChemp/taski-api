@@ -24,8 +24,22 @@ const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL || "http://localhost:5173",
+        origin: (origin, callback) => {
+            const allowedOrigins = [
+                process.env.FRONTEND_URL,
+                "https://taski-one.vercel.app",
+                "https://taski-one.vercel.app/"
+            ];
+            if (!origin || allowedOrigins.some(allowed => origin === allowed ||
+                origin.replace(/\/$/, '') === (allowed === null || allowed === void 0 ? void 0 : allowed.replace(/\/$/, '')))) {
+                callback(null, true);
+            }
+            else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
         methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true
     },
 });
 io.on("connection", (socket) => {
@@ -44,7 +58,15 @@ io.on("connection", (socket) => {
 });
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: /https:\/\/taski-one\.vercel\.app/
+    origin: (origin, callback) => {
+        if (!origin || /^https:\/\/taski-one\.vercel\.app\/?$/.test(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
 }));
 app.use('/api/auth', auth_routes_1.default);
 app.use('/api/user', user_routes_1.default);
