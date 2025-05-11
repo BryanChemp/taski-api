@@ -15,6 +15,13 @@ import timelogRoutes from './routes/timelog.routes';
 import dotenv from "dotenv"
 import cors from "cors";
 import { Task } from "./types/Task";
+import { createClient } from "@supabase/supabase-js";
+import { Database } from "./types/SupabaseDB";
+
+
+const supabaseUrl = process.env.SUPABASE_URL!
+const supabaseKey = process.env.SUPABASE_KEY!
+export const supabase = createClient<Database>(supabaseUrl, supabaseKey)
 
 dotenv.config();
 const app = express();
