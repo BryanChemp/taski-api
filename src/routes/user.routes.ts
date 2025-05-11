@@ -1,7 +1,4 @@
 import { Router } from 'express';
-import { ApiResponse } from '../types/Response';
-import { sendError } from '../helpers/sendError';
-import { authenticateUser } from '../services/authService';
 import { supabase } from '..';
 
 const router = Router();

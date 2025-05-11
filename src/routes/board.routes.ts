@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { ApiResponse } from '../types/Response';
 import { Board } from '../types/Board';
-import { mockBoards } from '../mocks/boards.mock';
 
 const router = Router();
 
@@ -9,7 +8,7 @@ router.get('/', (req, res) => {
   const response: ApiResponse<Board[]> = {
     status: 200,
     message: '',
-    data: mockBoards
+    data: []
   }
   res.json(response);
 });
@@ -17,12 +16,11 @@ router.get('/', (req, res) => {
 
 router.get('/:userId', (req, res) => {
   const userId = parseInt(req.params.userId);
-  const boards = mockBoards.filter((board) => board.membersId.includes(userId));
   
   const response: ApiResponse<Board[]> = {
     status: 200,
     message: '',
-    data: boards
+    data: []
   };
   res.json(response);
 });

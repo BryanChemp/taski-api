@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { ApiResponse } from '../types/Response';
-import { mockUserRefs } from '../mocks/usersRef.mock';
 import { UserRef } from '../types/UserRef';
 import { sendError } from '../helpers/sendError';
 
@@ -10,7 +9,7 @@ router.get('/', (req, res) => {
   const response: ApiResponse<UserRef[]> = {
     status: 200,
     message: '',
-    data: mockUserRefs
+    data: []
   }
   res.json(response);
 });
@@ -32,13 +31,11 @@ router.get('/by-ids', (req, res) => {
       if (isNaN(num)) throw new Error('Invalid ID format');
       return num;
     });
-
-    const users = mockUserRefs.filter(user => ids.includes(user.id));
     
     const response: ApiResponse<UserRef[]> = {
       status: 200,
-      message: `Found ${users.length} users`,
-      data: users
+      message: `Found ${[].length} users`,
+      data: []
     };
 
     res.json(response);

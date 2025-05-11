@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { ApiResponse } from '../types/Response';
 import { sendError } from '../helpers/sendError';
 import { authenticateUser } from '../services/authService';
-import { mockUsers } from '../mocks/users.mock';
 import { User } from '../types/User';
 
 const router = Router();

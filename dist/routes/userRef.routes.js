@@ -1,14 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const usersRef_mock_1 = require("../mocks/usersRef.mock");
 const sendError_1 = require("../helpers/sendError");
 const router = (0, express_1.Router)();
 router.get('/', (req, res) => {
     const response = {
         status: 200,
         message: '',
-        data: usersRef_mock_1.mockUserRefs
+        data: []
     };
     res.json(response);
 });
@@ -28,11 +27,10 @@ router.get('/by-ids', (req, res) => {
                 throw new Error('Invalid ID format');
             return num;
         });
-        const users = usersRef_mock_1.mockUserRefs.filter(user => ids.includes(user.id));
         const response = {
             status: 200,
-            message: `Found ${users.length} users`,
-            data: users
+            message: `Found ${[].length} users`,
+            data: []
         };
         res.json(response);
     }
