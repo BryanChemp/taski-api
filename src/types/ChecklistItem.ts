@@ -3,4 +3,5 @@ export interface ChecklistItem {
     taskId: number;
     description: string;
     done: boolean;
+    order: number;
 }

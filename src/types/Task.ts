@@ -27,6 +27,7 @@ export interface Task {
     estimatedTimeMinutes?: number;
     timeLogsIds: number[];
     commentsIds: number[];
-    dependencies: number[];
-    relatedTasks: number[];
+    projectId: number;
+    watchersIds: number[];
+    isFinished: boolean;
 }
