@@ -30,14 +30,7 @@ router.get('/:userId', async (req, res) => {
         return sendError(res, 500, 'Error on get boards by userId');
     }
 
-    const filtered = (data || []).filter(board => {
-        try {
-            const members = JSON.parse(board.membersId);
-            return Array.isArray(members) && members.includes(userId);
-        } catch {
-            return false;
-        }
-    });
+    const filtered = (data || []).filter(board => board.membersId.includes(userId));
 
     sendReponse(res, 200, filtered);
 });

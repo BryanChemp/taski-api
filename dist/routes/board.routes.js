@@ -31,15 +31,7 @@ router.get('/:userId', (req, res) => __awaiter(void 0, void 0, void 0, function*
     if (error) {
         return (0, sendError_1.sendError)(res, 500, 'Error on get boards by userId');
     }
-    const filtered = (data || []).filter(board => {
-        try {
-            const members = JSON.parse(board.membersId);
-            return Array.isArray(members) && members.includes(userId);
-        }
-        catch (_a) {
-            return false;
-        }
-    });
+    const filtered = (data || []).filter(board => board.membersId.includes(userId));
     (0, sendReponse_1.sendReponse)(res, 200, filtered);
 }));
 exports.default = router;

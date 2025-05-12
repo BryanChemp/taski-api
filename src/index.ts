@@ -19,11 +19,13 @@ import { createClient } from "@supabase/supabase-js";
 import { Database } from "./types/SupabaseDB";
 
 
+dotenv.config();
+
 const supabaseUrl = process.env.SUPABASE_URL!
 const supabaseKey = process.env.SUPABASE_KEY!
 export const supabase = createClient<Database>(supabaseUrl, supabaseKey)
 
-dotenv.config();
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
