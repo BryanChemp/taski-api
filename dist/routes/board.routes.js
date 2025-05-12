@@ -34,4 +34,13 @@ router.get('/:userId', (req, res) => __awaiter(void 0, void 0, void 0, function*
     const filtered = (data || []).filter(board => board.membersId.includes(userId));
     (0, sendReponse_1.sendReponse)(res, 200, filtered);
 }));
+router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const board = req.body;
+    const { data, error } = yield __1.supabase.from("board").insert([board]);
+    if (error) {
+        console.log('error', error);
+        return (0, sendError_1.sendError)(res, 500, 'Error adding board to the database');
+    }
+    (0, sendReponse_1.sendReponse)(res, 201, data);
+}));
 exports.default = router;

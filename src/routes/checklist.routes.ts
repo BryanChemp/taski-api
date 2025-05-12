@@ -30,4 +30,17 @@ router.get('/by-task/:taskId', async (req, res) => {
   sendReponse(res, 200, data);
 })
 
+router.post('/add', async (req, res) => {
+  const checklist: ChecklistItem = req.body;
+
+  const { data, error } = await supabase.from("checklist").insert([checklist]);
+
+  if (error) {
+    console.log('error', error);
+    return sendError(res, 500, 'Error adding checklist to the database');
+  }
+
+  sendReponse(res, 201, data);
+});
+
 export default router;

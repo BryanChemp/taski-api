@@ -34,4 +34,17 @@ router.get('/:boardId', async (req, res) => {
   sendReponse(res, 200, data);
 });
 
+router.post('/add', async (req, res) => {
+  const column: BoardColumn = req.body;
+
+  const { data, error } = await supabase.from("column").insert([column]);
+
+  if (error) {
+    console.log('error', error);
+    return sendError(res, 500, 'Error adding column to the database');
+  }
+
+  sendReponse(res, 201, data);
+});
+
 export default router;

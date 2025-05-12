@@ -17,4 +17,17 @@ router.get('/', async (req, res) => {
   sendReponse(res, 200, data);
 });
 
+router.post('/add', async (req, res) => {
+  const comment: Comment = req.body;
+
+  const { data, error } = await supabase.from("comment").insert([comment]);
+
+  if (error) {
+    console.log('error', error);
+    return sendError(res, 500, 'Error adding comment to the database');
+  }
+
+  sendReponse(res, 201, data);
+});
+
 export default router;

@@ -29,4 +29,13 @@ router.get('/by-task/:taskId', (req, res) => __awaiter(void 0, void 0, void 0, f
     }
     (0, sendReponse_1.sendReponse)(res, 200, data);
 }));
+router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const checklist = req.body;
+    const { data, error } = yield __1.supabase.from("checklist").insert([checklist]);
+    if (error) {
+        console.log('error', error);
+        return (0, sendError_1.sendError)(res, 500, 'Error adding checklist to the database');
+    }
+    (0, sendReponse_1.sendReponse)(res, 201, data);
+}));
 exports.default = router;

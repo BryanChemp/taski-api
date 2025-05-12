@@ -21,4 +21,13 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     (0, sendReponse_1.sendReponse)(res, 200, data);
 }));
+router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const timeLog = req.body;
+    const { data, error } = yield __1.supabase.from("timeLog").insert([timeLog]);
+    if (error) {
+        console.log('error', error);
+        return (0, sendError_1.sendError)(res, 500, 'Error adding timeLog to the database');
+    }
+    (0, sendReponse_1.sendReponse)(res, 201, data);
+}));
 exports.default = router;

@@ -47,4 +47,17 @@ router.get('/by-ids', async (req, res) => {
   }
 });
 
+router.post('/add', async (req, res) => {
+  const userRef: UserRef = req.body;
+
+  const { data, error } = await supabase.from("userRef").insert([userRef]);
+
+  if (error) {
+    console.log('error', error);
+    return sendError(res, 500, 'Error adding userRef to the database');
+  }
+
+  sendReponse(res, 201, data);
+});
+
 export default router;

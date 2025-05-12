@@ -16,4 +16,17 @@ router.get('/', async (req, res) => {
   sendReponse(res, 200, data);
 });
 
+router.post('/add', async (req, res) => {
+  const tag: Tag = req.body;
+
+  const { data, error } = await supabase.from("tag").insert([tag]);
+
+  if (error) {
+    console.log('error', error);
+    return sendError(res, 500, 'Error adding tag to the database');
+  }
+
+  sendReponse(res, 201, data);
+});
+
 export default router;

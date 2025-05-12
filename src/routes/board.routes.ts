@@ -35,4 +35,17 @@ router.get('/:userId', async (req, res) => {
     sendReponse(res, 200, filtered);
 });
 
+router.post('/add', async (req, res) => {
+  const board: Board = req.body;
+
+  const { data, error } = await supabase.from("board").insert([board]);
+
+  if (error) {
+    console.log('error', error);
+    return sendError(res, 500, 'Error adding board to the database');
+  }
+
+  sendReponse(res, 201, data);
+});
+
 export default router;
