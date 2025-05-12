@@ -28,7 +28,7 @@ router.get('/:userId', async (req, res) => {
         .contains('membersId', JSON.stringify([userId]));
 
     if (error) {
-        console.log('error', error)
+        console.log('error', JSON.stringify([userId]), error)
         return sendError(res, 500, 'Error on get boards by userId');
     }
 

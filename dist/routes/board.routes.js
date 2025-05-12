@@ -30,7 +30,7 @@ router.get('/:userId', (req, res) => __awaiter(void 0, void 0, void 0, function*
         .select("*")
         .contains('membersId', JSON.stringify([userId]));
     if (error) {
-        console.log('error', error);
+        console.log('error', JSON.stringify([userId]), error);
         return (0, sendError_1.sendError)(res, 500, 'Error on get boards by userId');
     }
     (0, sendReponse_1.sendReponse)(res, 200, data);
