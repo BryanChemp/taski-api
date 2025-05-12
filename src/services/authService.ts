@@ -1,15 +1,21 @@
+import { supabase } from "..";
 import { User } from "../types/User";
 
-export function authenticateUser(email: string, password: string): User | null {
-    // const user = {};
+export async function authenticateUser(email: string, password: string): Promise<User | null> {
+    const { data, error } = await supabase
+        .from("user")
+        .select("*")
+        .eq("email", email)
+        .single();
 
-    // if (user && user.password === password) {
-    //     return {
-    //         ...user,
-    //         password: '',
-    //         sessionToken: '123'
-    //     };
-    // }
+    if (error || !data) return null;
+
+    if (data.password === password) {
+        return {
+            ...data,
+            password: '',
+        };
+    }
 
     return null;
 }

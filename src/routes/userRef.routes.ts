@@ -2,28 +2,27 @@ import { Router } from 'express';
 import { ApiResponse } from '../types/Response';
 import { UserRef } from '../types/UserRef';
 import { sendError } from '../helpers/sendError';
+import { sendReponse } from '../helpers/sendReponse';
+import { supabase } from '..';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  const response: ApiResponse<UserRef[]> = {
-    status: 200,
-    message: '',
-    data: []
+router.get('/', async (req, res) => {
+  const { data, error } = await supabase.from("userRef").select("*");
+
+  if (error) {
+    sendError(res, 500, 'Error on get all usersRef from db');
   }
-  res.json(response);
+
+  sendReponse(res, 200, data);
 });
 
-router.get('/by-ids', (req, res) => {
+router.get('/by-ids', async (req, res) => {
   try {
     const idsParam = req.query.ids as string;
-    
+
     if (!idsParam) {
-      res.status(400).json({
-        status: 400,
-        message: 'Parameter "ids" is required',
-        data: null
-      });
+      return sendError(res, 400, 'Parameter "ids" is required');
     }
 
     const ids = idsParam.split(',').map(id => {
@@ -31,18 +30,20 @@ router.get('/by-ids', (req, res) => {
       if (isNaN(num)) throw new Error('Invalid ID format');
       return num;
     });
-    
-    const response: ApiResponse<UserRef[]> = {
-      status: 200,
-      message: `Found ${[].length} users`,
-      data: []
-    };
 
-    res.json(response);
+    const { data, error } = await supabase
+      .from("userRef")
+      .select("*")
+      .in("id", ids);
 
+    if (error) {
+      return sendError(res, 500, 'Error on get userRefs by ids');
+    }
+
+    sendReponse(res, 200, data);
   } catch (error) {
     const msg = error instanceof Error ? error.message : 'Invalid request';
-    sendError(res, 500, msg)
+    sendError(res, 500, msg);
   }
 });
 

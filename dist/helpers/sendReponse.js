@@ -9,16 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const __1 = require("..");
-const sendError_1 = require("../helpers/sendError");
-const sendReponse_1 = require("../helpers/sendReponse");
-const router = (0, express_1.Router)();
-router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { data, error } = yield __1.supabase.from("user").select("*");
-    if (error) {
-        (0, sendError_1.sendError)(res, 500, 'Error on get all users from db');
-    }
-    (0, sendReponse_1.sendReponse)(res, 200, data);
-}));
-exports.default = router;
+exports.sendReponse = sendReponse;
+function sendReponse(res, status, data, message) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = {
+            status,
+            message: message || '',
+            data
+        };
+        return res.status(status).json(response);
+    });
+}

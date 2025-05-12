@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { supabase } from '..';
+import { sendError } from '../helpers/sendError';
+import { sendReponse } from '../helpers/sendReponse';
 
 const router = Router();
 
@@ -7,10 +9,10 @@ router.get('/', async (req, res) => {
     const { data, error } = await supabase.from("user").select("*");
 
     if (error) {
-        res.status(500).json({ message: "Erro user", error: error.message });
+        sendError(res, 500, 'Error on get all users from db');
     }
 
-    res.status(200).json(data);
+    sendReponse(res, 200, data);
 });
 
 export default router;
