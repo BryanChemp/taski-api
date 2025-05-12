@@ -24,15 +24,22 @@ router.get('/:userId', async (req, res) => {
 
     const { data, error } = await supabase
         .from("board")
-        .select("*")
-        .contains('membersId', JSON.stringify([userId]));
+        .select("*");
 
     if (error) {
-        console.log('error', JSON.stringify([userId]), error)
         return sendError(res, 500, 'Error on get boards by userId');
     }
 
-    sendReponse(res, 200, data);
+    const filtered = (data || []).filter(board => {
+        try {
+            const members = JSON.parse(board.membersId);
+            return Array.isArray(members) && members.includes(userId);
+        } catch {
+            return false;
+        }
+    });
+
+    sendReponse(res, 200, filtered);
 });
 
 export default router;

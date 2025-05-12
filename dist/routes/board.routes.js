@@ -27,12 +27,19 @@ router.get('/:userId', (req, res) => __awaiter(void 0, void 0, void 0, function*
     const userId = parseInt(req.params.userId);
     const { data, error } = yield __1.supabase
         .from("board")
-        .select("*")
-        .contains('membersId', JSON.stringify([userId]));
+        .select("*");
     if (error) {
-        console.log('error', JSON.stringify([userId]), error);
         return (0, sendError_1.sendError)(res, 500, 'Error on get boards by userId');
     }
-    (0, sendReponse_1.sendReponse)(res, 200, data);
+    const filtered = (data || []).filter(board => {
+        try {
+            const members = JSON.parse(board.membersId);
+            return Array.isArray(members) && members.includes(userId);
+        }
+        catch (_a) {
+            return false;
+        }
+    });
+    (0, sendReponse_1.sendReponse)(res, 200, filtered);
 }));
 exports.default = router;
