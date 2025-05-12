@@ -27,7 +27,7 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const authenticatedUser = yield (0, authService_1.authenticateUser)(email, password);
         if (!authenticatedUser)
             return (0, sendError_1.sendError)(res, 404, 'User not found in our database');
-        (0, sendReponse_1.sendReponse)(res, 200, authService_1.authenticateUser);
+        (0, sendReponse_1.sendReponse)(res, 200, authenticatedUser);
     }
     catch (e) {
         console.error("Error loging user:", e);

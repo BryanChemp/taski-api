@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
       const authenticatedUser = await authenticateUser(email, password);
       if (!authenticatedUser) return sendError(res, 404, 'User not found in our database');
 
-      sendReponse(res, 200, authenticateUser);
+      sendReponse(res, 200, authenticatedUser);
     } catch (e) {
       console.error("Error loging user:", e);
       return sendError(res, 500, 'Internal server error', e);
