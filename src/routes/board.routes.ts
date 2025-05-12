@@ -25,7 +25,7 @@ router.get('/:userId', async (req, res) => {
     const { data, error } = await supabase
         .from("board")
         .select("*")
-        .contains('membersId', [userId]);
+        .contains('membersId', JSON.stringify([userId]));
 
     if (error) {
         console.log('error', error)

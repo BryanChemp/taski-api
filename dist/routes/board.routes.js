@@ -28,7 +28,7 @@ router.get('/:userId', (req, res) => __awaiter(void 0, void 0, void 0, function*
     const { data, error } = yield __1.supabase
         .from("board")
         .select("*")
-        .contains('membersId', [userId]);
+        .contains('membersId', JSON.stringify([userId]));
     if (error) {
         console.log('error', error);
         return (0, sendError_1.sendError)(res, 500, 'Error on get boards by userId');
