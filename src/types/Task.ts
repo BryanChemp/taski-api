@@ -12,9 +12,9 @@ export interface Task {
     order: number;
     title: string;
     description: string;
-    priority: TaskPriority;
-    type: TaskType;
-    visibility: TaskVisibility;
+    priority: number;
+    type: number;
+    visibility: number;
     tagsIds: number[];
     checklistIds: number[];
     categoriesIds: number[];
