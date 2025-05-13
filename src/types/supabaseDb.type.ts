@@ -1,15 +1,15 @@
 // src/types/supabase.ts
-import { Board } from './Board'
-import { BoardColumn } from './BoardColumn'
-import { Category } from './Category'
-import { ChecklistItem } from './ChecklistItem'
-import { Comment } from './Comment'
-import { Tag } from './Tag'
-import { Task } from './Task'
-import { TaskType } from './TaskType'
-import { TimeLog } from './TimeLog'
-import { User } from './User'
-import { UserRef } from './UserRef'
+import { Board } from './board.type'
+import { BoardColumn } from './column.type'
+import { Category } from './category.type'
+import { ChecklistItem } from './checklistItem.type'
+import { Comment } from './comment.type'
+import { Tag } from './tag.type'
+import { Task } from './task.type'
+import { TaskType } from './taskyType.type'
+import { TimeLog } from './timeLog.type'
+import { User } from './user.type'
+import { UserRef } from './userRef.type'
 
 // Aqui está o tipo que você vai usar com o Supabase
 export interface Database {

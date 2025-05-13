@@ -1,4 +1,4 @@
-import { ApiResponse, ResponseStatus } from "../types/Response";
+import { ApiResponse, ResponseStatus } from "../types/response.type";
 
 export async function sendReponse(res: any, status: ResponseStatus, data?: any, message?: string) {
     const response: ApiResponse<any> = {

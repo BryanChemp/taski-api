@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { ApiResponse } from '../types/Response';
-import { ChecklistItem } from '../types/ChecklistItem';
+import { ApiResponse } from '../types/response.type';
+import { ChecklistItem } from '../types/checklistItem.type';
 import { supabase } from '..';
 import { sendError } from '../helpers/sendError';
 import { sendReponse } from '../helpers/sendReponse';

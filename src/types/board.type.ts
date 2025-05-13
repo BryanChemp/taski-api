@@ -1,5 +1,5 @@
-import { TaskVisibility } from "./TaskVisibility";
-import { UserRef } from "./UserRef";
+import { TaskVisibility } from "./taskVisibility.type";
+import { UserRef } from "./userRef.type";
 
 export interface Board {
     id: number;

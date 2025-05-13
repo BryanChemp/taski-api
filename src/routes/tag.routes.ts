@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { ApiResponse } from '../types/Response';
-import { Tag } from '../types/Tag';
+import { ApiResponse } from '../types/response.type';
+import { Tag } from '../types/tag.type';
 import { sendError } from '../helpers/sendError';
 import { sendReponse } from '../helpers/sendReponse';
 import { supabase } from '..';

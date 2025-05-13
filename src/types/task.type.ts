@@ -1,8 +1,4 @@
-import { Category } from "./Category";
-import { TaskPriority } from "./TaskPriority";
-import { TaskType } from "./TaskType";
-import { TaskVisibility } from "./TaskVisibility";
-import { UserRef } from "./UserRef";
+import { UserRef } from "./userRef.type";
 
 export interface Task {
     id: number;

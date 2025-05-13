@@ -14,9 +14,9 @@ import tagRoutes from './routes/tag.routes';
 import timelogRoutes from './routes/timelog.routes';
 import dotenv from "dotenv"
 import cors from "cors";
-import { Task } from "./types/Task";
+import { Task } from "./types/task.type";
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "./types/SupabaseDB";
+import { Database } from "./types/supabaseDb.type";
 
 
 dotenv.config();

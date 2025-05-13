@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { ApiResponse } from '../types/Response';
+import { ApiResponse } from '../types/response.type';
 import { sendError } from '../helpers/sendError';
-import { authenticateUser } from '../services/authService';
-import { User } from '../types/User';
+import { authenticateUser } from '../services/authenticate.service';
+import { User } from '../types/user.type';
 import { sendReponse } from '../helpers/sendReponse';
 
 const router = Router();

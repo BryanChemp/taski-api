@@ -1,4 +1,4 @@
-import { UserRef } from "./UserRef";
+import { UserRef } from "./userRef.type";
 
 export interface Reaction {
     emoji: string;

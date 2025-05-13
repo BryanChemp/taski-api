@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { ApiResponse } from '../types/Response';
-import { TimeLog } from '../types/TimeLog';
+import { ApiResponse } from '../types/response.type';
+import { TimeLog } from '../types/timeLog.type';
 import { supabase } from '..';
 import { sendError } from '../helpers/sendError';
 import { sendReponse } from '../helpers/sendReponse';

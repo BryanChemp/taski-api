@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { ApiResponse } from '../types/Response';
-import { Comment } from '../types/Comment';
+import { ApiResponse } from '../types/response.type';
+import { Comment } from '../types/comment.type';
 import { supabase } from '..';
 import { sendError } from '../helpers/sendError';
 import { sendReponse } from '../helpers/sendReponse';

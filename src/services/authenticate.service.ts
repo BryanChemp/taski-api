@@ -1,5 +1,5 @@
 import { supabase } from "..";
-import { User } from "../types/User";
+import { User } from "../types/user.type";
 
 export async function authenticateUser(email: string, password: string): Promise<User | null> {
     const { data, error } = await supabase

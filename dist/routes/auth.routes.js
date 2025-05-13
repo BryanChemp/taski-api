@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const sendError_1 = require("../helpers/sendError");
-const authService_1 = require("../services/authService");
+const authenticate_service_1 = require("../services/authenticate.service");
 const sendReponse_1 = require("../helpers/sendReponse");
 const router = (0, express_1.Router)();
 router.get('/', (req, res) => {
@@ -24,7 +24,7 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
             return (0, sendError_1.sendError)(res, 400, 'Invalid email');
         if (!password)
             return (0, sendError_1.sendError)(res, 400, 'Invalid password');
-        const authenticatedUser = yield (0, authService_1.authenticateUser)(email, password);
+        const authenticatedUser = yield (0, authenticate_service_1.authenticateUser)(email, password);
         if (!authenticatedUser)
             return (0, sendError_1.sendError)(res, 404, 'User not found in our database');
         (0, sendReponse_1.sendReponse)(res, 200, authenticatedUser);
