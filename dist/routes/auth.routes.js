@@ -31,7 +31,7 @@ router.post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     catch (e) {
         console.error("Error loging user:", e);
-        return (0, sendError_1.sendError)(res, 500, 'Internal server error', e);
+        (0, sendError_1.sendError)(res, 500, 'Internal server error', e);
     }
 }));
 router.post('/authenticate', (req, res) => {
@@ -40,7 +40,7 @@ router.post('/authenticate', (req, res) => {
     }
     catch (e) {
         console.error("Error authenticating user:", e);
-        return (0, sendError_1.sendError)(res, 500, 'Internal server error', e);
+        (0, sendError_1.sendError)(res, 500, 'Internal server error', e);
     }
 });
 exports.default = router;

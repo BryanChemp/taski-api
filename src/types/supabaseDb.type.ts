@@ -6,7 +6,6 @@ import { ChecklistItem } from './checklistItem.type'
 import { Comment } from './comment.type'
 import { Tag } from './tag.type'
 import { Task } from './task.type'
-import { TaskType } from './taskyType.type'
 import { TimeLog } from './timeLog.type'
 import { User } from './user.type'
 import { UserRef } from './userRef.type'
@@ -54,11 +53,6 @@ export interface Database {
         Row: TimeLog
         Insert: Omit<TimeLog, 'id'>
         Update: Partial<Omit<TimeLog, 'id'>>
-      },
-      taskType: {
-        Row: TaskType
-        Insert: Omit<TaskType, 'id'>
-        Update: Partial<Omit<TaskType, 'id'>>
       },
       user: {
         Row: User

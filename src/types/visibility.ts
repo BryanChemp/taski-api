@@ -1,0 +1,1 @@
+export type Visibility = 1 | 2;

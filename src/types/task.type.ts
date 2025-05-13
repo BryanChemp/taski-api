@@ -1,4 +1,6 @@
+import { Category } from "./category.type";
 import { UserRef } from "./userRef.type";
+import { Visibility } from "./visibility";
 
 export interface Task {
     id: number;
@@ -9,11 +11,10 @@ export interface Task {
     title: string;
     description: string;
     priority: number;
-    type: number;
-    visibility: number;
+    visibility: Visibility;
     tagsIds: number[];
     checklistIds: number[];
-    categoriesIds: number[];
+    categoriesIds: Category[];
     participantsIds: number[];
     reporter: UserRef;
     createdAt: string;

@@ -1,1 +1,0 @@
-export type TaskType = 'feature' | 'bug' | 'chore' | 'improvement';

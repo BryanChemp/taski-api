@@ -1,4 +1,4 @@
-import { TaskVisibility } from "./taskVisibility.type";
+import { Visibility } from "./visibility";
 import { UserRef } from "./userRef.type";
 
 export interface Board {
@@ -7,7 +7,7 @@ export interface Board {
     description?: string;
     createdAt: string;
     updatedAt: string;
-    visibility: TaskVisibility;
+    visibility: Visibility;
     membersId: number[];
     createdBy: UserRef;
     columnsIds: number[];

@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
       sendReponse(res, 200, authenticatedUser);
     } catch (e) {
       console.error("Error loging user:", e);
-      return sendError(res, 500, 'Internal server error', e);
+      sendError(res, 500, 'Internal server error', e);
     }
 });
 
@@ -33,7 +33,7 @@ router.post('/authenticate', (req, res) => {
     return;
   } catch (e) {
     console.error("Error authenticating user:", e);
-    return sendError(res, 500, 'Internal server error', e);
+    sendError(res, 500, 'Internal server error', e);
   }
 });
 
